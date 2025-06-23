@@ -50,9 +50,7 @@ npm install
 
 ```
 JWT_SECRET=shoppySecretKey
-MONGO_URI=mongodb://localhost:27017
-DB_NAME=Shoppy_Globe
-PORT=7000
+
 ```
 
 4. **Run MongoDB locally**
