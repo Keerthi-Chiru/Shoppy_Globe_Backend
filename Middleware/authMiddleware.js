@@ -2,11 +2,12 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 dotenv.config();
 
-const JWT_SECRET = process.env.JWT_SECRET;
+
 
 // Middleware to authenticate requests using JWT
 export function authMiddleware(req, res, next) {
     // Retrieve the token from the request headers
+    const JWT_SECRET = process.env.JWT_SECRET;
     const token = req.headers['authorization'];
 
     // If no token is provided, deny access

@@ -5,17 +5,20 @@ import jwt from "jsonwebtoken";
 import dotenv from 'dotenv';
 
 dotenv.config();
-const JWT_SECRET = process.env.JWT_SECRET;
+
+
 
 // Controller to register a new user
 export async function addUser(req, res) {
+
   const { email, password } = req.body;
+
 
   try {
     // Check if a user with the same email already exists
-    const existUser = await UserModel.find({ email });
+    const existUser = await UserModel.findOne({ email });
 
-    if (existUser.length > 0) {
+    if (existUser) {
       return res.status(400).json({ message: "User already exists" });
     }
 
@@ -46,6 +49,7 @@ export async function addUser(req, res) {
 // Controller to authenticate a user and return a JWT token
 export async function loginUser(req, res) {
   const { email, password } = req.body;
+  const JWT_SECRET = process.env.JWT_SECRET;
 
   try {
     // Find the user by email
